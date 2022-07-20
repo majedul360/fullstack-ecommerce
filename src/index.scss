@@ -1,0 +1,29 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap");
+@import "./global.scss";
+html {
+  font-size: 62.5%;
+  overflow-x: hidden;
+}
+
+* {
+  font-family: "Roboto", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-transform: capitalize;
+  border: none;
+  outline: none;
+  list-style: none;
+}
+
+// media queries
+@include device(991px) {
+  html {
+    font-size: 55%;
+  }
+}
+@include device(450px) {
+  html {
+    font-size: 52%;
+  }
+}

@@ -1,0 +1,12 @@
+@mixin device($val) {
+  @media (max-width: $val) {
+    @content;
+  }
+}
+
+@mixin flex($val) {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: $val;
+  gap: 2.5rem;
+}
