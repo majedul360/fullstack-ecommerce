@@ -10,3 +10,10 @@
   align-items: $val;
   gap: 2.5rem;
 }
+
+@mixin grid($val, $gap) {
+  display: grid;
+  align-items: center;
+  grid-template-columns: repeat(auto-fit, minmax($val, 1fr));
+  gap: $gap;
+}

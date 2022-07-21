@@ -1,0 +1,33 @@
+.category {
+  .image {
+    height: 55rem;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .content {
+      position: absolute;
+      text-align: center;
+
+      h3 {
+        font-size: 3.5rem;
+        color: white;
+        margin-bottom: 3rem;
+      }
+
+      .btn {
+        font-size: 1.7rem;
+        color: gray;
+        background: white;
+        padding: 1rem 1.7rem;
+        cursor: pointer;
+      }
+    }
+  }
+}

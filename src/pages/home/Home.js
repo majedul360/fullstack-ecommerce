@@ -1,12 +1,16 @@
 import React from "react";
 import Header from "../../components/header/Header";
+import Categories from "./categories/Categories";
 import Slider from "./slider/Slider";
-
+import "./Home.scss";
 const Home = () => {
   return (
-    <div>
+    <div className="home">
       <Header />
-      <Slider />
+      <div className="sections">
+        <Slider className="slide-container" />
+        <Categories className="categories" />
+      </div>
     </div>
   );
 };

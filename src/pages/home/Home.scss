@@ -1,0 +1,9 @@
+@import "./../../global.scss";
+
+.home {
+  .sections {
+    > *:not(.slide-container) {
+      padding: 5rem 3rem;
+    }
+  }
+}

@@ -1,0 +1,5 @@
+@import "/src/global.scss";
+
+.categories {
+  @include grid(40rem, 0.5rem);
+}
