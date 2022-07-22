@@ -1,0 +1,34 @@
+.newsletter {
+  background: #fcf5f5;
+  text-align: center;
+
+  h2 {
+    font-size: 3vw;
+  }
+  p {
+    font-size: 2.5rem;
+    text-transform: none;
+    margin: 2rem 0;
+  }
+  .letter-form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 75rem;
+    margin: 0 auto;
+    input {
+      border: 0.1rem solid gray;
+      padding: 1.2rem 2rem;
+      text-transform: none;
+      width: 100%;
+    }
+
+    button {
+      background: teal;
+      color: white;
+      font-size: 2rem;
+      padding: 0.8rem 2rem;
+      cursor: pointer;
+    }
+  }
+}

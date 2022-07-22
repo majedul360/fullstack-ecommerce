@@ -1,0 +1,4 @@
+@import "./../../../global.scss";
+.products {
+  @include grid(28rem, 1.5rem);
+}

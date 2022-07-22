@@ -1,0 +1,54 @@
+@import "/src/global.scss";
+.footer {
+  @include grid(40rem, 3.5rem);
+
+  h2 {
+    font-size: 3rem;
+  }
+
+  p {
+    font-size: 1.5rem;
+    margin: 1.5rem 0;
+  }
+
+  .icons {
+    .icon {
+      width: 3.7rem;
+      height: 3.7rem;
+      line-height: 3.7rem;
+      text-align: center;
+      border-radius: 50%;
+      font-size: 1.7rem;
+      padding: 0.7rem;
+      margin-right: 1.5rem;
+      &:nth-child(1) {
+        background-color: #3b5999;
+        color: white;
+      }
+      &:nth-child(2) {
+        background-color: #e4405f;
+        color: white;
+      }
+      &:nth-child(3) {
+        background-color: #55acee;
+        color: white;
+      }
+      &:nth-child(4) {
+        background-color: #e60023;
+        color: white;
+      }
+    }
+  }
+
+  h3 {
+    font-size: 2.5rem;
+  }
+
+  .links-container {
+    @include flex(center);
+
+    p {
+      margin: 1rem 0;
+    }
+  }
+}

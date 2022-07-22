@@ -1,5 +1,5 @@
 import { Badge } from "@material-ui/core";
-import { Mail, Search, ShoppingCart } from "@material-ui/icons";
+import { Mail, Search, ShoppingCartOutlined } from "@material-ui/icons";
 import React from "react";
 import "./Header.scss";
 const Header = () => {
@@ -33,7 +33,7 @@ const Header = () => {
               horizontal: "right",
             }}
           >
-            <ShoppingCart className="icon" color="action" />
+            <ShoppingCartOutlined className="icon" color="action" />
           </Badge>
         </nav>
       </div>
