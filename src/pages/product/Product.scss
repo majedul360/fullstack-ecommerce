@@ -1,0 +1,5 @@
+.product-page {
+  > *:not(.header) {
+    padding: 5rem 3rem;
+  }
+}

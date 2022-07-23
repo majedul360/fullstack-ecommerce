@@ -1,10 +1,10 @@
 import React from "react";
-import Home from "./pages/home/Home";
+import Product from "./pages/product/Product";
 
 const App = () => {
   return (
     <div>
-      <Home />
+      <Product />
     </div>
   );
 };
