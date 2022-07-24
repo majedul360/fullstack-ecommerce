@@ -1,0 +1,5 @@
+.product-list {
+  > *:not(.header) {
+    padding: 3rem 5rem;
+  }
+}
