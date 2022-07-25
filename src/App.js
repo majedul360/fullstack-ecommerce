@@ -1,10 +1,9 @@
 import React from "react";
-import ProductList from "./pages/productList/ProductList";
-
+import { Registar } from "./pages/registar/Registar";
 const App = () => {
   return (
     <div>
-      <ProductList />
+      <Registar />
     </div>
   );
 };

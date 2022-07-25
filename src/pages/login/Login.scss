@@ -1,0 +1,44 @@
+.login {
+  height: 100vh;
+  background: linear-gradient(
+      rgba(255, 255, 255, 0.5),
+      rgba(255, 255, 255, 0.5)
+    ),
+    url("https://images.pexels.com/photos/6984650/pexels-photo-6984650.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940")
+      center;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .login-container {
+    width: 50rem;
+    padding: 2rem;
+    background: white;
+
+    h3 {
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+    }
+
+    form {
+      input {
+        width: 100%;
+        border: 0.1rem solid gray;
+        padding: 1rem 1.7rem;
+        margin: 1rem 0;
+      }
+      .btn {
+        background: teal;
+        padding: 1.2rem 0;
+        font-size: 1.7rem;
+        cursor: pointer;
+      }
+    }
+
+    p {
+      font-size: 1.7rem;
+      margin: 0.5rem 0;
+    }
+  }
+}
