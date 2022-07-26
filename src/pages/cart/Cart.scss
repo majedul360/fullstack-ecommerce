@@ -1,0 +1,156 @@
+.cart {
+  > *:not(.header) {
+    padding: 3rem 5rem;
+  }
+
+  .top {
+    p {
+      font-size: 3.5rem;
+      text-align: center;
+      font-weight: 100;
+    }
+
+    .btn-container {
+      margin: 2.5rem 0;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+
+      .btn-box {
+        button:not(.checkout-btn) {
+          border: 0.2rem solid black;
+          padding: 1rem 2rem;
+          font-size: 1.7rem;
+          cursor: pointer;
+        }
+
+        .checkout-btn {
+          background: black;
+          padding: 1rem 1.7rem;
+          font-size: 1.7rem;
+          color: white;
+          cursor: pointer;
+        }
+
+        span {
+          font-size: 1.7rem;
+          border-bottom: 0.2rem solid black;
+          cursor: pointer;
+          &:nth-child(1) {
+            margin-right: 3rem;
+          }
+        }
+      }
+    }
+  }
+
+  .bottom {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8rem;
+
+    .info-container {
+      flex: 1;
+
+      .product {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .details {
+          display: flex;
+          align-items: center;
+          gap: 3rem;
+          img {
+            width: 25rem;
+          }
+
+          .box {
+            h3 {
+              font-size: 2rem;
+              margin: 1.5rem 0;
+              span {
+                font-size: 1.7rem;
+                font-weight: 100;
+              }
+            }
+            .color {
+              width: 2.5rem;
+              height: 2.5rem;
+              border-radius: 50%;
+              background: black;
+            }
+          }
+        }
+
+        .quantity-price {
+          .quantity {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            .icon {
+              font-size: 2.5rem;
+              cursor: pointer;
+            }
+
+            span {
+              font-size: 2rem;
+            }
+          }
+
+          .price {
+            span {
+              font-size: 2rem;
+              font-weight: 100;
+              margin-left: 2.5rem;
+            }
+          }
+        }
+      }
+    }
+    .order-summery {
+      width: 40rem;
+      padding: 2rem;
+      border: 0.1rem solid gray;
+      border-radius: 0.5rem;
+      h2 {
+        font-size: 2.5rem;
+        text-align: center;
+      }
+      .box {
+        margin: 4rem 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        h3 {
+          font-size: 2rem;
+        }
+
+        .text {
+          p {
+            font-size: 1.7rem;
+          }
+        }
+
+        .number {
+          span {
+            font-size: 1.7rem;
+          }
+        }
+      }
+
+      button {
+        width: 100%;
+        text-align: center;
+        background: black;
+        color: white;
+        padding: 1rem 0;
+        font-size: 1.7rem;
+        cursor: pointer;
+      }
+    }
+  }
+}

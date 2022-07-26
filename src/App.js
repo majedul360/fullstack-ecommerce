@@ -1,9 +1,9 @@
 import React from "react";
-import { Registar } from "./pages/registar/Registar";
+import Cart from "./pages/cart/Cart";
 const App = () => {
   return (
     <div>
-      <Registar />
+      <Cart />
     </div>
   );
 };
