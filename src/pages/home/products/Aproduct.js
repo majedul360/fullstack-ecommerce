@@ -1,13 +1,13 @@
 import React from "react";
-import "./Product.scss";
+import "./Aproduct.scss";
 import {
   SearchOutlined,
   FavoriteBorderOutlined,
   ShoppingCartOutlined,
 } from "@material-ui/icons";
-const Product = ({ product }) => {
+const Aproduct = ({ product }) => {
   return (
-    <div className="product">
+    <div className="a-product">
       <div className="image">
         <img src={product.img} alt="" />
         <div className="icons">
@@ -20,4 +20,4 @@ const Product = ({ product }) => {
   );
 };
 
-export default Product;
+export default Aproduct;
