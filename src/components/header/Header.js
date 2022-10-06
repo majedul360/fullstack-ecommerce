@@ -1,8 +1,12 @@
 import { Badge } from "@material-ui/core";
 import { Mail, Search, ShoppingCartOutlined } from "@material-ui/icons";
 import React from "react";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import "./Header.scss";
 const Header = () => {
+  const navigate = useNavigate();
+  const cart = useSelector((state) => state.cart.quantity);
   return (
     <header className="header">
       <p className="deal">Super Deal! Free Shipping on Orders Over $50</p>
@@ -24,7 +28,7 @@ const Header = () => {
 
           <span>Sign in</span>
           <Badge
-            badgeContent={4}
+            badgeContent={cart}
             color="primary"
             className="badge"
             overlap="rectangular"
@@ -32,6 +36,8 @@ const Header = () => {
               vertical: "top",
               horizontal: "right",
             }}
+            style={{ cursor: "pointer" }}
+            onClick={() => navigate("/cart")}
           >
             <ShoppingCartOutlined className="icon" color="action" />
           </Badge>

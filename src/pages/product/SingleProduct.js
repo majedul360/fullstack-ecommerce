@@ -2,51 +2,93 @@ import React from "react";
 import { Add, Remove } from "@material-ui/icons";
 
 import "./SingleProduct.scss";
-const SingleProduct = () => {
+import { useState } from "react";
+import { useEffect } from "react";
+import { publicRequest } from "../../requestMethods";
+import { addProduct } from "../../redux/cartRedux";
+import { useDispatch } from "react-redux";
+const SingleProduct = ({ id }) => {
+  const [product, setProduct] = useState({});
+  const [quantity, setQuantity] = useState(1);
+  const [color, setColor] = useState("");
+  const [size, setSize] = useState("");
+  const { img, title, desc, price } = product;
+  const dispatch = useDispatch();
+  useEffect(() => {
+    const getProduct = async () => {
+      try {
+        const result = await publicRequest.get(`/find/${id}`);
+        setProduct(result?.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getProduct();
+  }, []);
+
+  const handleQuantity = (type) => {
+    if (type === "dic") {
+      quantity > 1 && setQuantity(quantity - 1);
+    }
+    if (type === "inc") {
+      setQuantity(quantity + 1);
+    }
+  };
+
+  const handleAddToCart = () => {
+    dispatch(
+      addProduct({
+        ...product,
+        quantity,
+        color,
+        size,
+      })
+    );
+  };
   return (
     <div className="single-product">
       <div className="img">
         {" "}
-        <img src="https://i.ibb.co/S6qMxwr/jean.jpg" alt="" />
+        <img src={img} alt="" />
       </div>
       <div className="box">
-        <p className="title">Denim Jumpsuit</p>
-        <p className="desc">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-          venenatis, dolor in finibus malesuada, lectus ipsum porta nunc, at
-          iaculis arcu nisi sed mauris. Nulla fermentum vestibulum ex, eget
-          tristique tortor pretium ut. Curabitur elit justo, consequat id
-          condimentum ac, volutpat ornare.
-        </p>
-        <p className="price">$ 20</p>
+        <p className="title">{title}</p>
+        <p className="desc">{desc}</p>
+        <p className="price">$ {price}</p>
         <div className="color-size">
           <div className="colors">
             <span>color:</span>
-            <div className="color" style={{ background: "black " }}></div>
-            <div className="color" style={{ background: "darkBlue " }}></div>
-            <div className="color" style={{ background: "gray " }}></div>
+            {product?.color?.map((c, index) => (
+              <div
+                key={index}
+                className="color"
+                style={{ background: `${c}` }}
+                onClick={() => setColor(c)}
+              ></div>
+            ))}
           </div>
 
           <div className="size">
             <span>size:</span>
-            <select name="cars" id="cars">
-              <option value="xs">XS</option>
-              <option value="s">S</option>
-              <option value="m">M</option>
-              <option value="lg">L</option>
-              <option value="xl">XL</option>
+            <select onChange={(e) => setSize(e.target.value)}>
+              {product?.size?.map((s, index) => (
+                <option key={index} value={s}>
+                  {s}
+                </option>
+              ))}
             </select>
           </div>
         </div>
 
         <div className="add-cart-container">
           <div className="add-container">
-            <Add className="icon" />
-            <span>1</span>
-            <Remove className="icon" />
+            <Remove className="icon" onClick={() => handleQuantity("dic")} />
+            <span>{quantity}</span>
+
+            <Add className="icon" onClick={() => handleQuantity("inc")} />
           </div>
           <div className="cart-container">
-            <button>add to cart</button>
+            <button onClick={handleAddToCart}>add to cart</button>
           </div>
         </div>
       </div>

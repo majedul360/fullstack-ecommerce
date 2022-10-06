@@ -3,8 +3,10 @@ import Footer from "../../components/footer/Footer";
 import Header from "../../components/header/Header";
 import "./Cart.scss";
 import { Add, Remove } from "@material-ui/icons";
+import { useSelector } from "react-redux";
 
 const Cart = () => {
+  const cart = useSelector((state) => state.cart);
   return (
     <div className="cart">
       <Header className="header" />
@@ -26,68 +28,39 @@ const Cart = () => {
 
       <div className="bottom">
         <div className="info-container">
-          <div className="product">
-            <div className="details">
-              <img
-                src="https://hips.hearstapps.com/vader-prod.s3.amazonaws.com/1614188818-TD1MTHU_SHOE_ANGLE_GLOBAL_MENS_TREE_DASHERS_THUNDER_b01b1013-cd8d-48e7-bed9-52db26515dc4.png?crop=1xw:1.00xh;center,top&resize=480%3A%2A"
-                alt=""
-              />
-              <div className="box">
-                <h3>
-                  product: <span>thunder shoes</span>
-                </h3>
-                <h3>
-                  ID: <span>2342344982</span>
-                </h3>
-                <div className="color"></div>
-                <h3>
-                  size: <span>m</span>
-                </h3>
+          {cart?.products?.map((product, index) => (
+            <div className="product" key={index}>
+              <div className="details">
+                <img src={product?.img} alt="" />
+                <div className="box">
+                  <h3>
+                    product: <span>{product?.title}</span>
+                  </h3>
+                  <h3>
+                    ID: <span>{product?._id}</span>
+                  </h3>
+                  <div
+                    className="color"
+                    style={{ background: `${product?.color}` }}
+                  ></div>
+                  <h3>
+                    size: <span>{product?.size}</span>
+                  </h3>
+                </div>
               </div>
-            </div>
-            <div className="quantity-price">
-              <div className="quantity">
-                <Add className="icon" />
-                <span>2</span>
-                <Remove className="icon" />
-              </div>
+              <div className="quantity-price">
+                <div className="quantity">
+                  <Add className="icon" />
+                  <span>2</span>
+                  <Remove className="icon" />
+                </div>
 
-              <div className="price">
-                <span>$ 30</span>
+                <div className="price">
+                  <span>$ {product?.price}</span>
+                </div>
               </div>
             </div>
-          </div>
-          <div className="product">
-            <div className="details">
-              <img
-                src="https://i.pinimg.com/originals/2d/af/f8/2daff8e0823e51dd752704a47d5b795c.png"
-                alt=""
-              />
-              <div className="box">
-                <h3>
-                  product: <span>thunder shoes</span>
-                </h3>
-                <h3>
-                  ID: <span>2342344982</span>
-                </h3>
-                <div className="color"></div>
-                <h3>
-                  size: <span>m</span>
-                </h3>
-              </div>
-            </div>
-            <div className="quantity-price">
-              <div className="quantity">
-                <Add className="icon" />
-                <span>2</span>
-                <Remove className="icon" />
-              </div>
-
-              <div className="price">
-                <span>$ 30</span>
-              </div>
-            </div>
-          </div>
+          ))}
         </div>
         <div className="order-summery">
           <h2>order summery</h2>
@@ -96,7 +69,7 @@ const Cart = () => {
               <p>subtotal</p>
             </div>
             <div className="number">
-              <span>$ 80</span>
+              <span>$ {cart?.total}</span>
             </div>
           </div>
           <div className="box">
@@ -120,7 +93,7 @@ const Cart = () => {
               <h3>total</h3>
             </div>
             <div className="number">
-              <span>$ 80</span>
+              <span>$ {cart?.total}</span>
             </div>
           </div>
           <button>checkout now</button>

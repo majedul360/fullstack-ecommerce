@@ -4,11 +4,13 @@ import Footer from "../../components/footer/Footer";
 import Header from "../../components/header/Header";
 import "./Product.scss";
 import SingleProduct from "./SingleProduct";
+import { useParams } from "react-router-dom";
 const Product = () => {
+  const { id } = useParams();
   return (
     <div className="product-page">
       <Header className="header" />
-      <SingleProduct />
+      <SingleProduct id={id} />
       <Newsletter />
       <Footer />
     </div>

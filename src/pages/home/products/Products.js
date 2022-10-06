@@ -6,7 +6,6 @@ import "./Products.scss";
 const Products = ({ category, filters, sort }) => {
   const [products, setProducts] = useState([]);
   const [filterProducts, setFilterProducts] = useState([]);
-  const [sortProducts, setSortProducts] = useState([]);
   useEffect(() => {
     const getProducts = async () => {
       try {
@@ -15,7 +14,6 @@ const Products = ({ category, filters, sort }) => {
             ? `http://localhost:5000/api/products?category=${category}`
             : "http://localhost:5000/api/products"
         );
-
         setProducts(result?.data);
       } catch (errors) {
         console.log(errors);
