@@ -4,9 +4,34 @@ import Header from "../../components/header/Header";
 import "./Cart.scss";
 import { Add, Remove } from "@material-ui/icons";
 import { useSelector } from "react-redux";
+import StripeCheckout from "react-stripe-checkout";
+import axios from "axios";
 
 const Cart = () => {
   const cart = useSelector((state) => state.cart);
+  const vat = parseFloat(cart?.total * (5 / 100));
+
+  const total = parseFloat(cart?.total + vat + 2);
+  const stripePublishKey =
+    "pk_test_51L0lILJNGKoLywBjp8ooTKXefeJR3jAchauqV3hNucQqldxxJgMMgMSPA6oQuRnyZ5Fl0l2TNHQ3ACzSHmbJS3yy00KApTWBSR";
+  const onToken = (token) => {
+    const sendId = async () => {
+      try {
+        const res = await axios.post(
+          "http://localhost:5000/api/checkout/payment",
+          {
+            tokenId: token?.id,
+            amount: total,
+            currency: "USD",
+          }
+        );
+        console.log(res.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    sendId();
+  };
   return (
     <div className="cart">
       <Header className="header" />
@@ -56,7 +81,7 @@ const Cart = () => {
                 </div>
 
                 <div className="price">
-                  <span>$ {product?.price}</span>
+                  <span>${product?.price}</span>
                 </div>
               </div>
             </div>
@@ -69,23 +94,23 @@ const Cart = () => {
               <p>subtotal</p>
             </div>
             <div className="number">
-              <span>$ {cart?.total}</span>
+              <span>${cart?.total}</span>
             </div>
           </div>
           <div className="box">
             <div className="text">
-              <p>Estimated shipping</p>
+              <p>vat</p>
             </div>
             <div className="number">
-              <span>$ 5.90</span>
+              <span>${vat}</span>
             </div>
           </div>
           <div className="box">
             <div className="text">
-              <p>shipping discount</p>
+              <p>delivary charge</p>
             </div>
             <div className="number">
-              <span>$ -5.90</span>
+              <span>$2</span>
             </div>
           </div>
           <div className="box">
@@ -93,10 +118,20 @@ const Cart = () => {
               <h3>total</h3>
             </div>
             <div className="number">
-              <span>$ {cart?.total}</span>
+              <span>${total}</span>
             </div>
           </div>
-          <button>checkout now</button>
+          <StripeCheckout
+            name="e-commerce"
+            amount={total * 100}
+            currency="USD"
+            stripeKey={stripePublishKey}
+            shippingAddress
+            billingAddress
+            token={onToken}
+          >
+            <button>checkout now</button>
+          </StripeCheckout>
         </div>
       </div>
       <Footer />

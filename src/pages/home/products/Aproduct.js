@@ -13,9 +13,9 @@ const Aproduct = ({ product }) => {
       <div className="image">
         <img src={product.img} alt="" />
         <div className="icons">
-          <FavoriteBorderOutlined className="icon icon-middle" />
+          <FavoriteBorderOutlined className="icon " />
           <SearchOutlined
-            className="icon"
+            className="icon icon-middle"
             onClick={() => navigate(`/product/${product?._id}`)}
           />
           <ShoppingCartOutlined className="icon" />

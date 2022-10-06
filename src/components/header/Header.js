@@ -2,7 +2,7 @@ import { Badge } from "@material-ui/core";
 import { Mail, Search, ShoppingCartOutlined } from "@material-ui/icons";
 import React from "react";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./Header.scss";
 const Header = () => {
   const navigate = useNavigate();
@@ -21,12 +21,14 @@ const Header = () => {
           </form>
         </div>
         <nav>
-          <span>home</span>
+          <Link className="nav-iteam" to="/">
+            home
+          </Link>
           <span>Accessories</span>
           <span>Wishlist</span>
-          <span>Registar</span>
+          <span className="nav-iteam">Registar</span>
 
-          <span>Sign in</span>
+          <span className="nav-iteam">Sign in</span>
           <Badge
             badgeContent={cart}
             color="primary"

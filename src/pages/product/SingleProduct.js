@@ -54,7 +54,7 @@ const SingleProduct = ({ id }) => {
       <div className="box">
         <p className="title">{title}</p>
         <p className="desc">{desc}</p>
-        <p className="price">$ {price}</p>
+        <p className="price">${price}</p>
         <div className="color-size">
           <div className="colors">
             <span>color:</span>
