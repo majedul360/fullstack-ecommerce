@@ -8,13 +8,18 @@ import Filter from "./Filter";
 import { useParams } from "react-router-dom";
 const ProductList = () => {
   const { category } = useParams();
-  const [filters, setFilters] = useState({});
+  const [filters, setFilters] = useState(null);
   const [sort, setSort] = useState("newest");
 
   return (
     <div className="product-list">
       <Header className="header" />
-      <Filter filters={filters} setFilters={setFilters} setSort={setSort} />
+      <Filter
+        filters={filters}
+        setFilters={setFilters}
+        setSort={setSort}
+        category={category}
+      />
       <Products category={category} filters={filters} sort={sort} />
       <Newsletter />
       <Footer />

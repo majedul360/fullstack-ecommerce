@@ -1,6 +1,6 @@
 import React from "react";
 import "./Filter.scss";
-const Filter = ({ filters, setFilters, setSort }) => {
+const Filter = ({ filters, setFilters, setSort, category }) => {
   const handleFilters = (e) => {
     const value = e.target.value.toLowerCase();
     const name = e.target.name;
@@ -8,7 +8,7 @@ const Filter = ({ filters, setFilters, setSort }) => {
   };
   return (
     <div className="filter">
-      <h3>dresses</h3>
+      <h3>{category}</h3>
       <div className="filter-container">
         <div className="color-size">
           <span>filter products:</span>

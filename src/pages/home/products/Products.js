@@ -6,6 +6,7 @@ import "./Products.scss";
 const Products = ({ category, filters, sort }) => {
   const [products, setProducts] = useState([]);
   const [filterProducts, setFilterProducts] = useState([]);
+  const [sortProducts, setSortProducts] = useState([]);
   useEffect(() => {
     const getProducts = async () => {
       try {
@@ -32,11 +33,29 @@ const Products = ({ category, filters, sort }) => {
     );
   }, [category, filters]);
 
+  useEffect(() => {
+    if (sort === "newest") {
+      const result = products.sort((a, b) => a.createdAt - b.createdAt);
+
+      setFilterProducts(result);
+    } else if (sort === "asc") {
+      const result = products.sort((a, b) => a.price - b.price);
+      setFilterProducts(result);
+    } else {
+      const result = products.sort((a, b) => b.price - a.price);
+      setFilterProducts(result);
+    }
+  }, [category, sort]);
+
   return (
     <div className="products">
-      {products?.map((product) => (
-        <Aproduct key={product._id} product={product} />
-      ))}
+      {filters
+        ? filterProducts?.map((product) => (
+            <Aproduct key={product._id} product={product} />
+          ))
+        : products?.map((product) => (
+            <Aproduct key={product._id} product={product} />
+          ))}
     </div>
   );
 };
