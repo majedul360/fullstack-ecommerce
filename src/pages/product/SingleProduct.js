@@ -17,7 +17,7 @@ const SingleProduct = ({ id }) => {
   useEffect(() => {
     const getProduct = async () => {
       try {
-        const result = await publicRequest.get(`/find/${id}`);
+        const result = await publicRequest.get(`/products/find/${id}`);
         setProduct(result?.data);
       } catch (err) {
         console.log(err);

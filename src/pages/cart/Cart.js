@@ -5,7 +5,8 @@ import "./Cart.scss";
 import { Add, Remove } from "@material-ui/icons";
 import { useSelector } from "react-redux";
 import StripeCheckout from "react-stripe-checkout";
-import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { publicRequest } from "../../requestMethods";
 
 const Cart = () => {
   const cart = useSelector((state) => state.cart);
@@ -14,18 +15,18 @@ const Cart = () => {
   const total = parseFloat(cart?.total + vat + 2);
   const stripePublishKey =
     "pk_test_51L0lILJNGKoLywBjp8ooTKXefeJR3jAchauqV3hNucQqldxxJgMMgMSPA6oQuRnyZ5Fl0l2TNHQ3ACzSHmbJS3yy00KApTWBSR";
+  const navigate = useNavigate();
   const onToken = (token) => {
     const sendId = async () => {
       try {
-        const res = await axios.post(
-          "http://localhost:5000/api/checkout/payment",
-          {
-            tokenId: token?.id,
-            amount: total,
-            currency: "USD",
-          }
-        );
-        console.log(res.data);
+        const res = await publicRequest.post("/checkout/payment", {
+          tokenId: token?.id,
+          amount: total,
+          currency: "USD",
+        });
+        if (res.data) {
+          navigate("/success");
+        }
       } catch (err) {
         console.log(err);
       }
