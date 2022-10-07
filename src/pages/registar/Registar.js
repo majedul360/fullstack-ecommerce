@@ -1,14 +1,13 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import {
-  registerFailure,
-  registerStart,
-  registerSuccess,
-} from "../../redux/registerUserRedux";
+import { useNavigate } from "react-router-dom";
+import { userFailure, userStart, userSuccess } from "../../redux/userRedux";
+
 import { publicRequest } from "../../requestMethods";
 import "./Registar.scss";
 export const Registar = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const handleForm = (e) => {
     e.preventDefault();
     const registerUser = {
@@ -17,13 +16,14 @@ export const Registar = () => {
       password: e.target.password.value,
     };
     const sendUser = async () => {
-      dispatch(registerStart());
+      dispatch(userStart());
       try {
         const res = await publicRequest.post("/auth/register", registerUser);
-        dispatch(registerSuccess(res.data));
-        e.target.reset();
+        dispatch(userSuccess(res.data));
+        localStorage.setItem("accessToken", res?.data?.accessToken);
+        navigate("/");
       } catch (e) {
-        dispatch(registerFailure());
+        dispatch(userFailure());
       }
     };
 

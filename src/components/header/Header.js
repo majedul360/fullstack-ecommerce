@@ -3,12 +3,12 @@ import { Mail, Search, ShoppingCartOutlined } from "@material-ui/icons";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { registerSuccess } from "../../redux/registerUserRedux";
+import { userSuccess } from "../../redux/userRedux";
 import "./Header.scss";
 const Header = () => {
   const navigate = useNavigate();
   const cart = useSelector((state) => state.cart.quantity);
-  const registerUser = useSelector((state) => state.registerUser);
+  const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
   return (
     <header className="header">
@@ -33,15 +33,17 @@ const Header = () => {
             Register
           </Link>
 
-          {registerUser?.user ? (
+          {user?.user ? (
             <span
               className="nav-iteam"
-              onClick={() => dispatch(registerSuccess(null))}
+              onClick={() => dispatch(userSuccess(null))}
             >
               Log out
             </span>
           ) : (
-            <span className="nav-iteam">Sign in</span>
+            <Link to="/login" className="nav-iteam">
+              Sign in
+            </Link>
           )}
           <Badge
             badgeContent={cart}
