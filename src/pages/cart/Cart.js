@@ -5,8 +5,8 @@ import "./Cart.scss";
 import { Add, Remove } from "@material-ui/icons";
 import { useSelector } from "react-redux";
 import StripeCheckout from "react-stripe-checkout";
-import { useNavigate } from "react-router-dom";
 import { publicRequest } from "../../requestMethods";
+import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
   const cart = useSelector((state) => state.cart);
@@ -24,9 +24,13 @@ const Cart = () => {
           amount: total,
           currency: "USD",
         });
-        if (res.data) {
-          navigate("/success");
-        }
+
+        navigate("/success", {
+          state: {
+            stripeData: res?.data,
+            products: cart,
+          },
+        });
       } catch (err) {
         console.log(err);
       }
