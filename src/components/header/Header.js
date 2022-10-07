@@ -1,12 +1,15 @@
 import { Badge } from "@material-ui/core";
 import { Mail, Search, ShoppingCartOutlined } from "@material-ui/icons";
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+import { registerSuccess } from "../../redux/registerUserRedux";
 import "./Header.scss";
 const Header = () => {
   const navigate = useNavigate();
   const cart = useSelector((state) => state.cart.quantity);
+  const registerUser = useSelector((state) => state.registerUser);
+  const dispatch = useDispatch();
   return (
     <header className="header">
       <p className="deal">Super Deal! Free Shipping on Orders Over $50</p>
@@ -26,9 +29,20 @@ const Header = () => {
           </Link>
           <span>Accessories</span>
           <span>Wishlist</span>
-          <span className="nav-iteam">Registar</span>
+          <Link to="/register" className="nav-iteam">
+            Register
+          </Link>
 
-          <span className="nav-iteam">Sign in</span>
+          {registerUser?.user ? (
+            <span
+              className="nav-iteam"
+              onClick={() => dispatch(registerSuccess(null))}
+            >
+              Log out
+            </span>
+          ) : (
+            <span className="nav-iteam">Sign in</span>
+          )}
           <Badge
             badgeContent={cart}
             color="primary"
