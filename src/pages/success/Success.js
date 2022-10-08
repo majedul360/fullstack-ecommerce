@@ -24,13 +24,12 @@ const Success = () => {
           amount: cart?.total,
           address: data?.billing_details?.address,
         });
-
         console.log(order);
       } catch (err) {
         console.log(err);
       }
     };
-    sendOrder();
+    data && sendOrder();
   }, []);
   return (
     <div style={{ textAlign: "center", marginTop: "20rem" }}>

@@ -7,8 +7,8 @@ import { userSuccess } from "../../redux/userRedux";
 import "./Header.scss";
 const Header = () => {
   const navigate = useNavigate();
-  const cart = useSelector((state) => state.cart.quantity);
-  const user = useSelector((state) => state.user);
+  const cart = useSelector((state) => state?.cart);
+  const user = useSelector((state) => state?.user);
   const dispatch = useDispatch();
   return (
     <header className="header">
@@ -46,7 +46,7 @@ const Header = () => {
             </Link>
           )}
           <Badge
-            badgeContent={cart}
+            badgeContent={cart?.quantity}
             color="primary"
             className="badge"
             overlap="rectangular"
@@ -55,7 +55,7 @@ const Header = () => {
               horizontal: "right",
             }}
             style={{ cursor: "pointer" }}
-            onClick={() => navigate("/cart")}
+            onClick={() => user?.email === cart?.userEmail && navigate("/cart")}
           >
             <ShoppingCartOutlined className="icon" color="action" />
           </Badge>
