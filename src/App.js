@@ -10,12 +10,14 @@ import Product from "./pages/product/Product";
 import NewProduct from "./pages/newProduct/NewProduct";
 import { Route, Routes } from "react-router-dom";
 import Login from "./pages/login/Login";
+import { useSelector } from "react-redux";
 
 function App() {
-  const isAdmin = false;
+  const { user } = useSelector((state) => state?.user);
+
   return (
     <>
-      {!isAdmin ? (
+      {!user?.isAdmin ? (
         <Login />
       ) : (
         <>
