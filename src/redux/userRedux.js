@@ -1,4 +1,4 @@
-const { createSlice, createEntityAdapter } = require("@reduxjs/toolkit");
+const { createSlice } = require("@reduxjs/toolkit");
 
 const userSlice = createSlice({
   name: "user",
