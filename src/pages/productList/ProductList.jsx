@@ -52,13 +52,24 @@ export default function ProductList() {
       renderCell: (params) => {
         return (
           <div className="productListItem">
-            <img className="productListImg" src={params?.row?.price} alt="" />
+            <img className="productListImg" src={params?.row?.img} alt="" />
             {params?.row?.title}{" "}
           </div>
         );
       },
     },
-    { field: "stock", headerName: "Stock", width: 200 },
+    {
+      field: "stock",
+      headerName: "Stock",
+      width: 200,
+      renderCell: (params) => {
+        return (
+          <div className="productListItem">
+            {params?.row?.instock ? "yes" : "no"},
+          </div>
+        );
+      },
+    },
     {
       field: "price",
       headerName: "Price",
