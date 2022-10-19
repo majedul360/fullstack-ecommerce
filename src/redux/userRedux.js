@@ -1,12 +1,14 @@
-const { createSlice } = require("@reduxjs/toolkit");
+import { PURGE } from "redux-persist";
 
+const { createSlice, createEntityAdapter } = require("@reduxjs/toolkit");
+const customEntityAdapter = createEntityAdapter({
+  user: null,
+  isFetching: false,
+  error: false,
+});
 const userSlice = createSlice({
   name: "user",
-  initialState: {
-    user: null,
-    isFetching: false,
-    error: false,
-  },
+  initialState: customEntityAdapter.getInitialState(),
   reducers: {
     userStart: (state) => {
       state.isFetching = true;
@@ -20,6 +22,11 @@ const userSlice = createSlice({
       state.isFetching = false;
       state.error = true;
     },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(PURGE, (state) => {
+      customEntityAdapter.removeAll(state);
+    });
   },
 });
 

@@ -3,6 +3,7 @@ import { Mail, Search, ShoppingCartOutlined } from "@material-ui/icons";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+import { persistor } from "../../redux/store";
 import { userSuccess } from "../../redux/userRedux";
 import "./Header.scss";
 const Header = () => {
@@ -10,6 +11,11 @@ const Header = () => {
   const cart = useSelector((state) => state?.cart);
   const user = useSelector((state) => state?.user);
   const dispatch = useDispatch();
+  const handlePursistStore = async () => {
+    await persistor.purge();
+    dispatch(userSuccess(null));
+  };
+  console.log(cart);
   return (
     <header className="header">
       <p className="deal">Super Deal! Free Shipping on Orders Over $50</p>
@@ -34,10 +40,7 @@ const Header = () => {
           </Link>
 
           {user?.user ? (
-            <span
-              className="nav-iteam"
-              onClick={() => dispatch(userSuccess(null))}
-            >
+            <span className="nav-iteam" onClick={() => handlePursistStore()}>
               Log out
             </span>
           ) : (
